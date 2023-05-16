@@ -1,0 +1,28 @@
+DISCORD SERVER
+https://discord.gg/MXyQGYRKTt
+
+New Input System
+https://docs.unity3d.com/Packages/com.unity.inputsystem@1.5/manual/Touch.html
+
+YT Get Components
+https://youtu.be/qqvJn-BnuQ8
+
+Font
+https://www.dafont.com/ethnocentric.font
+
+Texture Formats by Platform
+https://docs.unity3d.com/Manual/class-TextureImporterOverride.html
+
+Sounds
+Find coolfree sounds on ZAPSPLAT:https://www.zapsplat.com/ 
+
+Privacy Generator
+https://app-privacy-policy-generator.firebaseapp.com/
+
+Google Sites
+https://sites.google.com/new
+
+Unity Ads Data Safety Tables
+https://docs.unity.com/ads/en/manual/GoogleDataSafety
+
+
