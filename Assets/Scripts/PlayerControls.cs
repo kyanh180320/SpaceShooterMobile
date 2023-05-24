@@ -8,17 +8,24 @@ public class PlayerControls : MonoBehaviour
 {
     // Start is called before the first frame update
     private Camera cameraMain;
+    private Vector3 offset;
     void Start()
     {
         cameraMain = Camera.main;
+        offset = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Touch myTouch = Touch.activeTouches[0];
-        Vector3 touchPos = myTouch.screenPosition;
-        touchPos = cameraMain.ScreenToWorldPoint(touchPos);
+        if (Touch.fingers[0].isActive)
+        {
+            Touch myTouch = Touch.activeTouches[0];
+            Vector3 touchPos = myTouch.screenPosition;
+            touchPos = cameraMain.ScreenToWorldPoint(touchPos);
+            transform.position = new Vector3(touchPos.x, touchPos.y, 0);
+        }
+        
 
     }
     protected void OnEnable()
