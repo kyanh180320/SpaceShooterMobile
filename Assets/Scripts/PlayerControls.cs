@@ -11,10 +11,17 @@ public class PlayerControls : MonoBehaviour
     // Start is called before the first frame update
     private Camera cameraMain;
     private Vector3 offset;
+    private float maxLeft, maxRight, maxDown, maxUp;
     void Start()
     {
         cameraMain = Camera.main;
         offset = transform.position;
+
+        maxLeft = cameraMain.ViewportToWorldPoint(new Vector3(0.2f, 0, 0)).x;
+        maxRight = cameraMain.ViewportToWorldPoint(new Vector3(0.8f, 0, 0)).x;
+        maxDown = cameraMain.ViewportToWorldPoint(new Vector3(0, 0.1f, 0)).y;
+        maxUp = cameraMain.ViewportToWorldPoint(new Vector3(0, 0.9f, 0)).y;
+
     }
 
     // Update is called once per frame
@@ -34,10 +41,11 @@ public class PlayerControls : MonoBehaviour
             {
                 transform.position  = new Vector3(touchPos.x + offset.x, touchPos.y+offset.y, 0);
             }
-            else if(myTouch.phase == TouchPhase.Ended)
+            else if(myTouch.phase == TouchPhase.Stationary)
             {
-                offset = transform.position;
+                transform.position = new Vector3(touchPos.x + offset.x, touchPos.y + offset.y, 0);
             }
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x, maxLeft, maxRight), Mathf.Clamp(transform.position.y, maxDown, maxUp),0);
         }
         
 
