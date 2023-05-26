@@ -12,8 +12,7 @@ public class Parralax : MonoBehaviour
     {
         startPos= transform.position;
         spriteHeight = GetComponent<SpriteRenderer>().size.y;
-        print(spriteHeight);
-        print(startPos.y);
+       
     }
 
     // Update is called once per frame
