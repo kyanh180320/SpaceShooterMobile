@@ -17,37 +17,38 @@ public class PlayerControls : MonoBehaviour
         cameraMain = Camera.main;
         offset = transform.position;
 
-        maxLeft = cameraMain.ViewportToWorldPoint(new Vector3(0.2f, 0, 0)).x;
-        maxRight = cameraMain.ViewportToWorldPoint(new Vector3(0.8f, 0, 0)).x;
-        maxDown = cameraMain.ViewportToWorldPoint(new Vector3(0, 0.1f, 0)).y;
-        maxUp = cameraMain.ViewportToWorldPoint(new Vector3(0, 0.9f, 0)).y;
 
+        StartCoroutine(SetBoundaries());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Touch.fingers[0].isActive) // check has fingers[0]
+        if (Touch.activeTouches.Count > 0) // check has touch
         {
-            Touch myTouch = Touch.activeTouches[0]; //get all infor of fingers[0]
-            Vector3 touchPos = myTouch.screenPosition;
-            touchPos = cameraMain.ScreenToWorldPoint(touchPos);
-            //transform.position = new Vector3(touchPos.x, touchPos.y, 0);
-            if (myTouch.phase == TouchPhase.Began)
+            if (Touch.activeTouches[0].finger.index == 0)  // check only 1 finger to move
             {
-                offset = transform.position - touchPos;
+                Touch myTouch = Touch.activeTouches[0]; //get all infor of fingers[0]
+                Vector3 touchPos = myTouch.screenPosition;
+                touchPos = cameraMain.ScreenToWorldPoint(touchPos);
+                //transform.position = new Vector3(touchPos.x, touchPos.y, 0);
+                if (myTouch.phase == TouchPhase.Began)
+                {
+                    offset = transform.position - touchPos;
+                }
+                else if (myTouch.phase == TouchPhase.Moved)
+                {
+                    transform.position = new Vector3(touchPos.x + offset.x, touchPos.y + offset.y, 0);
+                }
+                else if (myTouch.phase == TouchPhase.Stationary)
+                {
+                    transform.position = new Vector3(touchPos.x + offset.x, touchPos.y + offset.y, 0);
+                }
             }
-            else if (myTouch.phase == TouchPhase.Moved)
-            {
-                transform.position  = new Vector3(touchPos.x + offset.x, touchPos.y+offset.y, 0);
-            }
-            else if(myTouch.phase == TouchPhase.Stationary)
-            {
-                transform.position = new Vector3(touchPos.x + offset.x, touchPos.y + offset.y, 0);
-            }
-            transform.position = new Vector3(Mathf.Clamp(transform.position.x, maxLeft, maxRight), Mathf.Clamp(transform.position.y, maxDown, maxUp),0);
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x, maxLeft, maxRight), Mathf.Clamp(transform.position.y, maxDown, maxUp), 0);
+
         }
-        
+
 
     }
     protected void OnEnable()
@@ -58,5 +59,13 @@ public class PlayerControls : MonoBehaviour
     protected void OnDisable()
     {
         EnhancedTouchSupport.Disable();
+    }
+    IEnumerator SetBoundaries()
+    {
+        yield return new WaitForSeconds(0.2f);//waiting time to camera load data correct
+        maxLeft = cameraMain.ViewportToWorldPoint(new Vector3(0.15f, 0, 0)).x;
+        maxRight = cameraMain.ViewportToWorldPoint(new Vector3(0.85f, 0, 0)).x;
+        maxDown = cameraMain.ViewportToWorldPoint(new Vector3(0, 0.1f, 0)).y;
+        maxUp = cameraMain.ViewportToWorldPoint(new Vector3(0, 0.9f, 0)).y;
     }
 }
