@@ -7,6 +7,7 @@ public class Meteor : Enemy
     // Start is called before the first frame update
     [SerializeField] protected float minSpeed;
     [SerializeField] protected float maxSpeed;
+    [SerializeField] protected float rotateSpeed;
     Rigidbody2D rb2d;
     float speed;
     void Start()
@@ -19,7 +20,7 @@ public class Meteor : Enemy
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Rotate(0,0,rotateSpeed*Time.deltaTime);
     }
     public override void HurtSequence()
     {
