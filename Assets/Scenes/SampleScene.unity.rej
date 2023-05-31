@@ -1,0 +1,9 @@
+diff a/Assets/Scenes/SampleScene.unity b/Assets/Scenes/SampleScene.unity	(rejected hunks)
+@@ -875,6 +875,7 @@
+ +=======
+ +  m_IsActive: 0
+ +=======
+++  m_IsActive: 1
+ +>>>>>>> parent of c9ab20d (Fix bug screnn)
+  --- !u!114 &636284490
+ +>>>>>>> c9ab20d259e49d509210993817f8236a571e5080
