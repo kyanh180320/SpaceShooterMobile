@@ -34,8 +34,8 @@ public class Meteor : Enemy
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            print("va cham");
-            Destroy(collision.gameObject);
+           PlayerStats playerStats = collision.GetComponent<PlayerStats>();
+            playerStats.TakeDamage(damage);
         }
     }
     private void OnBecameInvisible()

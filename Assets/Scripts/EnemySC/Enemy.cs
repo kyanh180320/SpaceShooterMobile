@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]protected float health;
+    [SerializeField]protected float damage;
     void Start()
     {
         
