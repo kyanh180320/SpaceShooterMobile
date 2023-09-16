@@ -8,6 +8,7 @@ public class PlayerStats : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private Image healthFill;
     [SerializeField] float maxHealth;
+    [SerializeField] private GameObject explosionPrefab;
     float health;
     void Start()
     {
@@ -22,6 +23,7 @@ public class PlayerStats : MonoBehaviour
         healthFill.fillAmount = health / maxHealth;
         if(health <=0)
         {
+            Instantiate(explosionPrefab, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }

@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   damage: 1
+  explosionPrefab: {fileID: 3904779834721771645, guid: 8cef42c288bb2dc4a956da7c7f357787, type: 3}
   minSpeed: 2
   maxSpeed: 5
   rotateSpeed: 100

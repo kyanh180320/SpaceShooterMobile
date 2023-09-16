@@ -24,11 +24,11 @@ public class Meteor : Enemy
     }
     public override void HurtSequence()
     {
-        base.HurtSequence();
     }
     public override void DeathSequence()
     {
-        base.DeathSequence();
+        Instantiate(explosionPrefab, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -36,6 +36,7 @@ public class Meteor : Enemy
         {
            PlayerStats playerStats = collision.GetComponent<PlayerStats>();
             playerStats.TakeDamage(damage);
+            Instantiate(explosionPrefab, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }
