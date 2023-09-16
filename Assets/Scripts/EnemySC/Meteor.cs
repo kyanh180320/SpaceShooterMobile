@@ -36,6 +36,7 @@ public class Meteor : Enemy
         {
            PlayerStats playerStats = collision.GetComponent<PlayerStats>();
             playerStats.TakeDamage(damage);
+            Destroy(gameObject);
         }
     }
     private void OnBecameInvisible()

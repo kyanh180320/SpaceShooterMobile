@@ -11,7 +11,7 @@ public class Parralax : MonoBehaviour
     void Start()
     {
         startPos= transform.position;
-        spriteHeight = GetComponent<SpriteRenderer>().size.y;
+        spriteHeight = GetComponent<SpriteRenderer>().bounds.size.y;
        
     }
 
