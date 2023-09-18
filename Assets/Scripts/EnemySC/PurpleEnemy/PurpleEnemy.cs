@@ -51,10 +51,10 @@ public class PurpleEnemy : Enemy
         Instantiate(explosionPrefab, transform.position, transform.rotation);
         Destroy(gameObject);
     }
-    //private void OnBecameInvisible()
-    //{
-    //    Destroy(gameObject);
-    //}
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
 
 
 
