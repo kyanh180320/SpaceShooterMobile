@@ -5,9 +5,12 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     // Start is called before the first frame update
+
     [SerializeField] protected float health;
     [SerializeField] protected float damage;
     [SerializeField] protected GameObject explosionPrefab;
+    [SerializeField] protected Rigidbody2D rb;
+    [SerializeField] protected Animator anim;
     void Start()
     {
 
