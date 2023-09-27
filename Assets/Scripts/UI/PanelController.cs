@@ -7,7 +7,10 @@ public class PanelController : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] GameObject loseScreen, winScreen;
     [SerializeField] CanvasGroup cGroup;
-    
+    private void Start()
+    {
+        EndGameManager.endGameManager.RegisterPanelController(this);
+    }
     public void ActiveWin()
     {
         cGroup.alpha= 1;

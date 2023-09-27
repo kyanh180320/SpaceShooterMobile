@@ -8,6 +8,8 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private GameObject purpleEnemyPrefab;
     [SerializeField] private float spawnTime;
+    [SerializeField] private GameObject bossPrefab;
+    [SerializeField] private WinCondition winCon;
     private float timer;
     float maxLeft, maxRight;
     private Camera cameraMain;
@@ -39,5 +41,17 @@ public class EnemySpawner : MonoBehaviour
         maxRight = cameraMain.ViewportToWorldPoint(new Vector3(0.85f, 0, 0)).x;
         yPos = cameraMain.ViewportToWorldPoint(new Vector3(0, 1.1f, 0)).y;
 
+    }
+    private void OnDisable()
+    {
+        if (!winCon.canSpawnBoss)
+        {
+            return;
+        }
+        if (bossPrefab != null)
+        {
+            Vector2 spawnPos = cameraMain.ViewportToWorldPoint(new Vector2(0.5f, 1.2f));
+            Instantiate(bossPrefab, spawnPos, Quaternion.identity);
+        }
     }
 }

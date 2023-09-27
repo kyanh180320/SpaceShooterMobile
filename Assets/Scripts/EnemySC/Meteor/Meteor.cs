@@ -8,6 +8,7 @@ public class Meteor : Enemy
     [SerializeField] protected float minSpeed;
     [SerializeField] protected float maxSpeed;
     [SerializeField] protected float rotateSpeed;
+    [SerializeField] protected ScriptableObject powerUpSpawner;
     Rigidbody2D rb2d;
     float speed;
     void Start()
@@ -27,6 +28,7 @@ public class Meteor : Enemy
     }
     public override void DeathSequence()
     {
+        base.DeathSequence();
         Instantiate(explosionPrefab, transform.position, transform.rotation);
         Destroy(gameObject);
     }

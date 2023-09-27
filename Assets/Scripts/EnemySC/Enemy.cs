@@ -11,6 +11,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected GameObject explosionPrefab;
     [SerializeField] protected Rigidbody2D rb;
     [SerializeField] protected Animator anim;
+    [SerializeField] protected ScriptableObjectExample powerUpSpawner;
+
+    [Header("Score"), SerializeField]
+    protected int scoreValue;
     void Start()
     {
 
@@ -36,6 +40,11 @@ public class Enemy : MonoBehaviour
     }
     public virtual void DeathSequence()
     {
-        Destroy(gameObject);
+        EndGameManager.endGameManager.UpdateScore(scoreValue);
+        if (powerUpSpawner != null)
+        {
+            powerUpSpawner.SpawnerPowerUp(transform.position);
+        }
+
     }
 }
